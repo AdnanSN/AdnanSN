@@ -11,10 +11,10 @@ I'm passionate about AI, web development, and machine learning. Currently workin
 
 ## 🔗 Connect with Me:
 
-<a href="https://instagram.com/your_insta_handle" target="_blank">
+<a href="https://instagram.com/_.addstagram._" target="_blank">
   <img src="https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white" alt="Instagram">
 </a>
-<a href="https://linkedin.com/in/your_linkedin_profile" target="_blank">
+<a href="https://linkedin.com/in/adnansn" target="_blank">
   <img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn">
 </a>
 
