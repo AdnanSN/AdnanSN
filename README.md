@@ -57,11 +57,11 @@ I'm passionate about AI, web development, and machine learning. Currently workin
 ---
 
 ## 📌 Featured Projects:
-### 🔹 [YOLOv8 Object Detection](https://github.com/AdnanSN/YOLOv8-object-detection)
+### 🔹 [YOLOv8 Object Detection](https://github.com/AdnanSN/Object-detection-using-YOLOv8)
 A project that implements object detection using YOLOv8 and OpenCV.  
 Tech: Python, OpenCV, YOLOv8, Numpy  
 
-### 🔹 [Email Spam Classifier](https://github.com/AdnanSN/email-spam-classifier)
+### 🔹 [Email Spam Classifier](https://github.com/AdnanSN/Email-spam-classifier-website)
 A web-based email spam classifier built using machine learning algorithms.  
 Tech: Python, Scikit-learn, Flask  
 
