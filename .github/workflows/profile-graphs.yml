@@ -1,0 +1,59 @@
+# Prints the live parts of the profile README every night:
+#   snake.svg / snake-dark.svg  the contribution graph being eaten (Platane/snk)
+#   stats.svg                   activity and languages on green-bar paper (.github/readme/stats.py)
+# Files are published to the `output` branch, which README.md reads from.
+name: Profile graphs
+
+on:
+  schedule:
+    - cron: "17 3 * * *"        # every night, 03:17 UTC
+  workflow_dispatch:             # "Run workflow" button in the Actions tab
+  push:
+    branches: [main]
+    paths:
+      - ".github/readme/**"
+      - ".github/workflows/profile-graphs.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: profile-graphs
+  cancel-in-progress: true
+
+jobs:
+  print:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Contribution snake
+        uses: Platane/snk/svg-only@v3
+        with:
+          github_user_name: ${{ github.repository_owner }}
+          outputs: |
+            dist/snake.svg?palette=github-light
+            dist/snake-dark.svg?palette=github-dark
+
+      - name: Keep yesterday's stats sheet as a fallback
+        run: |
+          if git fetch --depth=1 origin output && git show origin/output:stats.svg > "$RUNNER_TEMP/stats.svg"; then
+            cp "$RUNNER_TEMP/stats.svg" dist/stats.svg
+          fi
+
+      - name: Stats sheet
+        continue-on-error: true
+        run: python3 .github/readme/stats.py --user "${{ github.repository_owner }}" --out dist/stats.svg
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Publish to the output branch
+        uses: crazy-max/ghaction-github-pages@v4
+        with:
+          target_branch: output
+          build_dir: dist
+          jekyll: false
+          commit_message: Print profile graphs
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
